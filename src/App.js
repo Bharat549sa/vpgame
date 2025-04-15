@@ -89,7 +89,12 @@ export default function App() {
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [showDisguisePlayer, setShowDisguisePlayer] = useState(false);
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import StartScreen from './components/StartScreen';
+import Game from './components/Game';
+import Results from './components/Results';
+import './App.css';
+  
   const [wantsEncryption, setWantsEncryption] = useState(null);
   const [showPasswordPage, setShowPasswordPage] = useState(false);
   const [userPassword, setUserPassword] = useState('');
