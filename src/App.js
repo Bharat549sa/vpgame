@@ -133,7 +133,10 @@ export default function App() {
   
 
   return (
+    <Router>
     <div className="App">
+
+
       <header className="App-header">
       {!showPlayerSelector && !showDisguisePlayer && !showPasswordPage && !showGuessPage && (
     <>
@@ -162,6 +165,18 @@ export default function App() {
 
 
       </header>
+
+      {!gameStarted ? (
+          <StartScreen onStart={handleStartGame} />
+        ) : (
+          <Routes>
+            <Route path="/" element={<Game />} />
+            <Route path="/results" element={<Results />} />
+          </Routes>
+        )}
+      </div>
+      
     </div>
+    </Router>
   );
 }
