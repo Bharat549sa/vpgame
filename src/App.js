@@ -165,7 +165,7 @@ export default function App() {
 
 
       </header>
-
+<body>
       {!gameStarted ? (
           <StartScreen onStart={handleStartGame} />
         ) : (
@@ -174,7 +174,7 @@ export default function App() {
             <Route path="/results" element={<Results />} />
           </Routes>
         )}
-     
+     </body>
 
     </div>
     </Router>
