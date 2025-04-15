@@ -24,4 +24,4 @@ const Game = () => {
       {/* Game UI components */}
     </div>
   );
-};
+};export default Game;
