@@ -83,26 +83,30 @@ import "./styles.css";
 import PlayerSelector from "./PlayerSelector";
 import DisguisePlayer from "./DisguisePlayer";
 import PasswordPage from "./PasswordPage";
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import StartScreen from './components/StartScreen';
+import Game from './components/Game';
+import Results from './components/Results';
 export default function App() {
   const [showPlayerSelector, setShowPlayerSelector] = useState(false);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [showDisguisePlayer, setShowDisguisePlayer] = useState(false);
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import StartScreen from './components/StartScreen';
-import Game from './components/Game';
-import Results from './components/Results';
-import './App.css';
-  
+
   const [wantsEncryption, setWantsEncryption] = useState(null);
   const [showPasswordPage, setShowPasswordPage] = useState(false);
   const [userPassword, setUserPassword] = useState('');
   const [showGuessPage, setShowGuessPage] = useState(false);
+const [gameStarted, setGameStarted] = useState(false);
+const handleStartGame=() =>{
+  setGameStarted(true);
+};
+
+
 
   const players = [
     { name: "Player 1", src: "/images/personel/1.jpg" },
-    { name: "Player 2", src: "/images/personel/1 (2).jpg" },
+    { name: "Pl]ayer 2", src: "/images/personel/1 (2).jpg" },
     { name: "Player 3", src: "/images/personel/2 (2).jpg" },
     { name: "Player 4", src: "/images/personel/3.jpg" },
     { name: "Player 5", src: "/images/personel/4.jpg" },
@@ -138,8 +142,11 @@ import './App.css';
   
 
   return (
-    <Router>
+   
     <div className="App">
+      <header className="App-header">
+       
+      <Router>
     {!gameStarted ? (
           <StartScreen onStart={handleStartGame} />
         ) : (
@@ -147,11 +154,11 @@ import './App.css';
             <Route path="/" element={<Game />} />
             <Route path="/results" element={<Results />} />
           </Routes>
-        )}
-      <header className="App-header">
+         )}
+         </Router>  
       {!showPlayerSelector && !showDisguisePlayer && !showPasswordPage && !showGuessPage && (
     <>
-      <h1>Player Selector and Disguise</h1>
+      <h1>Player elector and Disguise</h1>
       <h3>Disguise Your Agent</h3>
       <button onClick={handleStartClick}>Start</button>
     </>
@@ -176,11 +183,8 @@ import './App.css';
 
 
       </header>
-<body>
     
-     </body>
-
     </div>
-    </Router>
+  
   );
 }
