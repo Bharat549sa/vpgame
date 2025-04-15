@@ -174,8 +174,8 @@ export default function App() {
             <Route path="/results" element={<Results />} />
           </Routes>
         )}
-      </div>
-      
+     
+
     </div>
     </Router>
   );
