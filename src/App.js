@@ -28,6 +28,9 @@ const [doppelgangerImages, setDoppelgangerImages] = useState([]);
 const imageDir = 'public/images';
 const [showComparePlayers, setShowComparePlayers] = useState(false);
 const [disguisedImage, setDisguisedImage] = useState(null);
+const [initialPlayer, setInitialPlayer] = useState(null);
+const [attemptsLeft, setAttemptsLeft] = useState(3);
+const [gameResult, setGameResult] = useState(null);
 
 
 // useEffect(() => {
@@ -78,6 +81,11 @@ const shuffle = (array) => array.sort(() => Math.random() - 0.5);
 
 const handleStartGame=() =>{
   setGameStarted(true);
+  // Randomly select an initial player
+  const randomPlayer = players[Math.floor(Math.random() * players.length)];
+  setInitialPlayer(randomPlayer);
+  setAttemptsLeft(3);
+  setGameResult(null);
 };
 
 
@@ -96,10 +104,29 @@ const handleStartGame=() =>{
     setCurrentPlayer(selectedPlayers[0]);
     setShowDisguisePlayer(true);
     setShowPlayerSelector(false);
+
+    if (selectedPlayer.id === initialPlayer.id) {
+      setGameResult("pass");
+      alert("Congratulations! You picked the correct agent. You win!");
+      setGameStarted(false); // Reset the game
+    } else {
+      if (attemptsLeft > 1) {
+        setAttemptsLeft(attemptsLeft - 1);
+        alert(`Wrong guess! You have ${attemptsLeft - 1} attempts left.`);
+      } else {
+        alert("Game over! You used all your attempts.");
+        setGameStarted(false); // Reset the game
+      }
+    }
+
   };
 
   const handleStartClick = () => {
     setShowPlayerSelector(true);
+   // setInitialPlayer(chosenPlayer);
+   // setCurrentPlayer(chosenPlayer);
+    setShowPlayerSelector(false);
+    setShowDisguisePlayer(true);
   };
 
   const handleWantsEncryption = (value) => {
@@ -166,11 +193,19 @@ const handleStartGame=() =>{
   //   return shuffle(imagesToReturn);
   // };
 
-  const handleDisguise = (disguisedImageDataURL) => {
-    setDisguisedImage(disguisedImageDataURL);
+  // const handleDisguise = (disguisedImageDataURL) => {
+  //   setDisguisedImage(disguisedImageDataURL);
+  //   setShowDisguisePlayer(false);
+  //   setShowComparePlayers(true);
+  // };
+
+  const handleDisguise = (disguisedImageDataURL, originalPlayer) => {
+    setInitialPlayer(originalPlayer);
+    setDisguisedPlayer({...originalPlayer, src: disguisedImageDataURL});
     setShowDisguisePlayer(false);
     setShowComparePlayers(true);
   };
+
   
   const getDoppelgangerImages = (directory, value, chosenPlayerSrc) => {
     if (!chosenPlayerSrc) {
@@ -284,8 +319,21 @@ const handleStartGame=() =>{
           <StartScreen onStart={handleStartGame} />
         ) : (
           <Routes>
-            <Route path="/" element={<Game />} />
-            <Route path="/results" element={<Results />} />
+            <Route path="/" element={                showDisguisePlayer ? (
+                  <DisguisePlayer
+                    onDisguise={handleDisguise}
+                    onEncryptionDecision={handleWantsEncryption}
+                  />
+                ) : (
+                  <Game 
+                    initialPlayer={initialPlayer}
+                    disguisedPlayer={disguisedPlayer}
+                    onSelection={handleSelection}
+                    attemptsLeft={attemptsLeft}
+                  />
+                )
+                } />
+            <Route path="/results" element={<Results gameResult={gameResult}/>} />
           </Routes>
          )}
          </Router>  
@@ -319,12 +367,13 @@ const handleStartGame=() =>{
  <ComparePlayers
  originalPlayer={currentPlayer}
  disguisedPlayer={{...currentPlayer, src: disguisedImage}}// Assuming the disguised player is the same as the current player for now
+ onSelection={handleSelection}
 />
 
 
  )}
 
- 
+
  {/* Add this section for the slider and doppelganger images */}
  {currentPlayer && (  //&& !showPasswordPage &&
   <div className="doppelganger-section">
@@ -368,7 +417,7 @@ const handleStartGame=() =>{
 {showPasswordPage && (
   <PasswordPage onPasswordSubmit={handlePasswordSubmit} />
 )}
- {showDisguisePlayer && currentPlayer && (
+ {/* {showDisguisePlayer && currentPlayer && (
           <DisguisePlayer
             player={currentPlayer}
             onDisguise={handleDisguise}
@@ -385,7 +434,7 @@ const handleStartGame=() =>{
 />
 
 
- )}
+ )} */}
     
 </div>
   );
