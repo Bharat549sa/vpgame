@@ -1,0 +1,190 @@
+.App {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  background: #949494;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #cec8c8;
+}
+
+.container {
+  margin: 20px auto;
+  text-align: center;
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.image {
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.titleButton,
+button.titleButton {
+  background-color: #e4685d;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+.titleButton:hover {
+  background-color: #eb675e;
+}
+
+.titleButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.titleButton:disabled {
+  background-color: #A95049;
+  cursor: not-allowed;
+}
+
+button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.crack {
+  background-color: #ff7f50;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: bold;
+}
+
+.password_header {
+  background-color: #ff7f50;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.encrypt_btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.encrypt_btn:hover {
+  background-color: #0056b3;
+}
+
+.input-container {
+  margin: 20px 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.more-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.titleBox {
+  text-align: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.titleButtonDiv {
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.titleButtonDivAlt {
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  top: 70%;
+  left: 11%;
+  transform: translate(-50%, -50%);
+}
+
+.overflow-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.player-image {
+  border: 2px solid transparent;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}
+
+.player-image.selected {
+  border-color: blue;
+}
